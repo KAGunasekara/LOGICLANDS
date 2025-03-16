@@ -1,0 +1,123 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    background-image: url('images/2308-w030-n003-793B-p15-793.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 4rem; /* Increased padding */
+    border-radius: 15px;
+    box-shadow: 0px 0px 40px #ff00ff;
+    text-align: center;
+    color: white;
+    width: 500px; /* Increased width */
+    border: 2px solid #ff00ff;
+}
+
+h2 {
+    font-size: 2.5rem; /* Increased size */
+    color: #ff00ff;
+    text-shadow: 3px 3px 10px #ff00ff;
+    margin-bottom: 2rem;
+}
+
+/* Input Box */
+.input-box {
+    margin-bottom: 2rem;
+    text-align: left; /* Align label to left */
+}
+
+.input-box label {
+    display: block;
+    font-size: 1.2rem; /* Bigger label text */
+    color: #ff00ff;
+    margin-bottom: 0.5rem;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 3px solid #ff00ff;
+    border-radius: 8px;
+    outline: none;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 18px; /* Bigger button */
+    background: linear-gradient(45deg, #ff00ff, #800080);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 5px 0px #660066;
+}
+
+.login-btn:hover {
+    background: linear-gradient(45deg, #800080, #ff00ff);
+    box-shadow: 0px 7px 0px #660066;
+}
+
+/* Signup Link */
+.signup-link {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.signup-link a {
+    color: #00ffea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+.btn-back {
+    background: linear-gradient(45deg, #ff00ff, #0088ff); 
+    color: white;
+    border: 3px solid #00ffea;
+    border-radius: 12px;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.8rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 180px;
+    height: 65px;
+    position: absolute;
+    top: 20px;  
+    right: 20px; 
+    box-shadow: 0px 0px 15px #00ffea;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: linear-gradient(45deg, #ff00ff, #00ffea);
+    box-shadow: 0px 0px 30px #ff00ff;
+    transform: scale(1.05);
+}

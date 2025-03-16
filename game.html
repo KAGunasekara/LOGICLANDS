@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+    <a href="login.html"><button class="btn-back">Back</button></a>
+    
+
+
+    <div class="menu-interface">
+        <h1 class="menu-title">Game Menu</h1>
+        
+        <div class="card-small">
+    
+            <button class="btn01" id="start-game-btn">Start Game</button>
+            <button class="btn01" id="settings-btn">Settings</button>
+            <button class="btn01" id="leaderboard-btn">Leaderboard</button>
+
+            <button class="btn01" id="exit-btn">Exit</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('start-game-btn').addEventListener('click', function() {
+            window.location.href = 'play.html'; 
+        });
+
+        document.getElementById('settings-btn').addEventListener('click', function() {
+            window.location.href = 'setting.html'; 
+        });
+
+        document.getElementById('leaderboard-btn').addEventListener('click', function() {
+            window.location.href = 'scoreboard.html'; 
+        });
+
+        document.getElementById('exit-btn').addEventListener('click', function() {
+            window.location.href = 'index.html'; 
+        });
+        // Example AJAX request to submit the score after the game ends
+function submitScore(score) {
+    fetch('submit_score.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `score=${score}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);  // Display response (success or error)
+    });
+}
+
+    </script>
+
+</body>
+</html>

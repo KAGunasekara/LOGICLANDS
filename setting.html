@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+
+    <a href="game.html">
+        <button class="btn-back">Back</button>
+        </a>
+
+    <div class="settings-interface">
+        <h1 class="settings-title">Game Settings</h1>
+        
+        <div class="card-small">
+            <div class="setting-item">
+                <label for="volume" class="setting-label">Volume</label>
+                <input type="range" id="volume" min="0" max="100" value="50" class="setting-input">
+            </div>
+            <div class="setting-item">
+                <label for="graphics" class="setting-label">Graphics</label>
+                <select id="graphics" class="setting-input">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+
+            <button class="btn01" id="save-settings-btn">Save Settings</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('save-settings-btn').addEventListener('click', function() {
+            alert('Settings have been saved!');
+        });
+    </script>
+
+</body>
+</html>
