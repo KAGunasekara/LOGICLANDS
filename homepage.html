@@ -1,26 +1,30 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Game Homepage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <audio autoplay>
-        <source src="sound/opening game-music-loop-6-144641.mp3" type="audio/mp3">
-    </audio>
+   <audio autoplay loop>
+        <source src="sound/puzzle-game-loop-bright-casual-video-game-music-249201.mp3" type="audio/mp3">
+    </audio> 
+
+    <div class="background-animation"></div> 
+
     <div class="center-center full">
         <img src="images/Ziara__3_-removebg-preview (1).png" alt="Logo" class="logo">
-    <div class="card-small">
-        <a href="login.html">
-            <input class="mt-4 btn01" type="button" value="LOGIN" >
-        </a>
-        <a href="signup.html">
-            <input class="mt-2 btn01" type="button" value="REGISTER">
-        </a>
-    </div>
-</div>
 
+        <div class="card-small">
+                <input class="mt-4 btn01" id="login-btn" type="button" value="LOGIN">
+                <input class="mt-2 btn01" id="signup-btn" type="button" value="REGISTER">
+        </div>
+    </div>
+
+    <!-- Starfield Effect -->
+    <canvas id="starfield"></canvas>
+
+    <script src="script.js"></script> <!-- JavaScript File -->
 </body>
 </html>

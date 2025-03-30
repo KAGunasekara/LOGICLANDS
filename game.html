@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="game.css">
 </head>
 <body>
-
+    <audio autoplay loop>
+        <source src="sound/puzzle-game-loop-bright-casual-video-game-music-249201.mp3" type="audio/mp3">
+    </audio> 
     <a href="login.html"><button class="btn-back">Back</button></a>
-    
-
 
     <div class="menu-interface">
         <h1 class="menu-title">Game Menu</h1>
@@ -21,14 +21,13 @@
             <button class="btn01" id="start-game-btn">Start Game</button>
             <button class="btn01" id="settings-btn">Settings</button>
             <button class="btn01" id="leaderboard-btn">Leaderboard</button>
-
             <button class="btn01" id="exit-btn">Exit</button>
         </div>
     </div>
 
     <script>
         document.getElementById('start-game-btn').addEventListener('click', function() {
-            window.location.href = 'play.html'; 
+            window.location.href = 'play.php'; 
         });
 
         document.getElementById('settings-btn').addEventListener('click', function() {
@@ -40,7 +39,7 @@
         });
 
         document.getElementById('exit-btn').addEventListener('click', function() {
-            window.location.href = 'index.html'; 
+            window.location.href = 'homepage.html'; 
         });
         // Example AJAX request to submit the score after the game ends
 function submitScore(score) {

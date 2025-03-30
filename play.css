@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -13,99 +14,191 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     height: 100vh;
 }
-
-.game-interface {
+.game-container {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 40px #00ffea;
+    width: 200%;
+    max-width: 1200px;
+    color: white;
     text-align: center;
+    border: 2px solid #00ffea;
+    height: 90%;
+}
+.game-header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 1.5rem;
 }
 
 .game-title {
-    color: #ff00ff;
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    text-shadow: 3px 3px 10px #ff00ff;
+    font-size: 2.5rem;
+    color: #00ffea;
+    text-shadow: 0 0 10px #00ffea;
 }
-
-.puzzle-board {
-    display: grid;
-    grid-template-columns: repeat(4, 100px); /* Change this according to your puzzle size */
-    grid-gap: 10px;
-    margin-bottom: 2rem;
-}
-
-.puzzle-piece {
-    width: 100px;
-    height: 100px;
-    background-color: #000;
-    border: 2px solid #00ffea;
-    border-radius: 5px;
+.leave-button {
+    background: linear-gradient(45deg, #00ffea, #0088ff);
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    height: 60px;
+    width: 190px;
 }
-
-.puzzle-piece:hover {
+.leave-button:hover {
+    background: linear-gradient(45deg, #0088ff, #00ffea);
     transform: scale(1.1);
-}
-
-.btn01 {
-    background: linear-gradient(45deg, #ff00ff, #0088ff);
-    color: white;
-    border: 3px solid #00ffea;
-    border-radius: 12px;
-    padding: 1rem 2rem;
-    font-size: 1.8rem;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    width: 320px;
-    height: 85px;
-    transition: all 0.3s ease-in-out;
     box-shadow: 0px 0px 20px #00ffea;
-    text-align: center;
+}
+.game-main {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.game-board {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00ffea;
+    border: 2px solid #00ffea;
+}
+.timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff00ff;
+    text-shadow: 0px 0px 10px #ff00ff;
+    margin-bottom: 1rem;
+}
+.level-indicator, .question-indicator {
+    font-size: 1.2rem;
+    color: #00ffea;
+    margin-bottom: 10px;
+    text-shadow: 0px 0px 5px #00ffea;
+}
+.attempts-indicator{
+    color: #00ffea;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+.question-grid {
+    display:inline-block;
+    grid-template-columns: 1fr; /* Use 1fr to make it a single column grid */
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 5px;
+    height: fit-content;
+    width: fit-content;
+    background-position: center;
+    margin: 1rem;
+}
+.answer-section {
+    margin-top: 1rem;
 }
 
-.btn01:hover {
-    background: linear-gradient(45deg, #ff00ff, #00ffea);
-    box-shadow: 0px 0px 30px #ff00ff;
+.answer-section input {
+    width: 70%;
+    padding: 12px;
+    border: 2px solid #00ffea;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    outline: none;
+    background: transparent;
+    color: white;
+}
+
+.answer-section input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.answer-section button {
+    background: linear-gradient(45deg, #00ffea, #0088ff);
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 10px #00ffea;
+}
+
+.answer-section button:hover {
+    background: linear-gradient(45deg, #0088ff, #00ffea);
+    box-shadow: 0px 0px 20px #00ffea;
     transform: scale(1.05);
 }
-
-.btn-back {
-    background: linear-gradient(45deg, #ff00ff, #0088ff);
+.next-level-button {
+    background: linear-gradient(45deg, #00ff00, #008800);
     color: white;
-    border: 3px solid #00ffea;
-    border-radius: 12px;
-    padding: 1.2rem 2.5rem;
-    font-size: 1.8rem;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border-radius: 8px;
     cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    width: 180px;
-    height: 65px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    box-shadow: 0px 0px 15px #00ffea;
+    margin-top: 15px;
+    display: block;
+    box-shadow: 0px 0px 15px #00ff00;
     transition: all 0.3s ease;
 }
 
-.btn-back:hover {
-    background: linear-gradient(45deg, #ff00ff, #00ffea);
-    box-shadow: 0px 0px 30px #ff00ff;
-    transform: scale(1.05);
+.next-level-button:hover {
+    background: linear-gradient(45deg, #008800, #00ff00);
+    box-shadow: 0px 0px 25px #00ff00;
+    transform: scale(1.1);
+}
+.side-section {
+    flex: 1;
+    margin-left: 20px;
+
+}
+
+.current-score {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 40px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 20px #00ffea;
+    border: 2px solid#00ffea;
+    font-size: 1.5rem;
+    color: #ff00ff;
+    text-shadow: 0px 0px 10px #ff00ff;
+}
+
+.current-score:hover {
+    box-shadow: 0px 0px 25px #00ffea;
+}
+
+/* Score Title */
+.current-score h2 {
+    font-size: 1.5rem;
+    border-radius: #00ffea;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .game-main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-board, .side-section {
+        width: 100%;
+    }
+
+    .answer-section input {
+        width: 100%;
+    }
+
+    .leave-button {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+    }
 }

@@ -17,35 +17,78 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
 
+/* Floating Particles */
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    animation: moveParticles 15s infinite linear;
+}
+
+@keyframes moveParticles {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
+
+/* Floating Dots */
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #ff00ff;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px #ff00ff;
+    animation: float 5s infinite alternate ease-in-out;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); opacity: 0.8; }
+    100% { transform: translateY(-50px); opacity: 0.3; }
+}
+
+/* Login Box */
 .login-container {
     background: rgba(0, 0, 0, 0.85);
-    padding: 4rem; /* Increased padding */
+    padding: 4rem;
     border-radius: 15px;
     box-shadow: 0px 0px 40px #ff00ff;
     text-align: center;
     color: white;
-    width: 500px; /* Increased width */
+    width: 500px;
     border: 2px solid #ff00ff;
 }
 
-h2 {
-    font-size: 2.5rem; /* Increased size */
+/* Glitch Effect for Title */
+.glitch-text {
+    font-size: 2.5rem;
     color: #ff00ff;
     text-shadow: 3px 3px 10px #ff00ff;
-    margin-bottom: 2rem;
+    animation: glitch 1s infinite linear;
+}
+
+@keyframes glitch {
+    0% { text-shadow: -3px 0px #ff00ff, 3px 0px #00ffea; }
+    25% { text-shadow: -3px 3px #00ffea, 3px -3px #ff00ff; }
+    50% { text-shadow: -5px -5px #ff00ff, 5px 5px #00ffea; }
+    75% { text-shadow: 5px -5px #00ffea, -5px 5px #ff00ff; }
+    100% { text-shadow: -3px 0px #ff00ff, 3px 0px #00ffea; }
 }
 
 /* Input Box */
 .input-box {
     margin-bottom: 2rem;
-    text-align: left; /* Align label to left */
+    text-align: left;
 }
 
 .input-box label {
     display: block;
-    font-size: 1.2rem; /* Bigger label text */
+    font-size: 1.2rem;
     color: #ff00ff;
     margin-bottom: 0.5rem;
 }
@@ -64,7 +107,7 @@ h2 {
 /* Login Button */
 .login-btn {
     width: 100%;
-    padding: 18px; /* Bigger button */
+    padding: 18px;
     background: linear-gradient(45deg, #ff00ff, #800080);
     border: none;
     border-radius: 8px;
@@ -95,8 +138,10 @@ h2 {
 .signup-link a:hover {
     text-decoration: underline;
 }
+
+/* Back Button */
 .btn-back {
-    background: linear-gradient(45deg, #ff00ff, #0088ff); 
+    background: linear-gradient(45deg, #ff00ff, #0088ff); /* Neon Gradient */
     color: white;
     border: 3px solid #00ffea;
     border-radius: 12px;
@@ -110,14 +155,28 @@ h2 {
     width: 180px;
     height: 65px;
     position: absolute;
-    top: 20px;  
-    right: 20px; 
-    box-shadow: 0px 0px 15px #00ffea;
+    top: 20px;  /* Positioning at the top */
+    right: 20px;  /* Positioning at the right */
+    box-shadow: 0px 0px 15px #00ffea;  /* Neon Glow */
     transition: all 0.3s ease;
+    animation: slideIn 1s ease-out; /* Slide-in Animation */
 }
 
+/* Hover Effect for Back Button */
 .btn-back:hover {
-    background: linear-gradient(45deg, #ff00ff, #00ffea);
+    background: linear-gradient(45deg, #00ffea, #ff00ff); /* Color shift */
     box-shadow: 0px 0px 30px #ff00ff;
-    transform: scale(1.05);
+    transform: translateX(-5px); /* Slight movement to the left */
+}
+
+/* Slide-in Animation */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-200px);  /* Starting from left */
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);  /* Final position */
+        opacity: 1;
+    }
 }
