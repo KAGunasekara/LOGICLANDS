@@ -1,4 +1,3 @@
-/* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 * {
@@ -19,39 +18,6 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-
-/* Floating Particles */
-.particles {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    animation: moveParticles 15s infinite linear;
-}
-
-@keyframes moveParticles {
-    0% { background-position: 0 0; }
-    100% { background-position: 100px 100px; }
-}
-
-/* Floating Dots */
-.particle {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background-color: #ff00ff;
-    border-radius: 50%;
-    box-shadow: 0px 0px 10px #ff00ff;
-    animation: float 5s infinite alternate ease-in-out;
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); opacity: 0.8; }
-    100% { transform: translateY(-50px); opacity: 0.3; }
-}
-
 /* Login Box */
 .login-container {
     background: rgba(0, 0, 0, 0.85);
@@ -141,7 +107,7 @@ body {
 
 /* Back Button */
 .btn-back {
-    background: linear-gradient(45deg, #ff00ff, #0088ff); /* Neon Gradient */
+    background: linear-gradient(45deg, #ff00ff, #0088ff); 
     color: white;
     border: 3px solid #00ffea;
     border-radius: 12px;
@@ -155,16 +121,16 @@ body {
     width: 180px;
     height: 65px;
     position: absolute;
-    top: 20px;  /* Positioning at the top */
-    right: 20px;  /* Positioning at the right */
-    box-shadow: 0px 0px 15px #00ffea;  /* Neon Glow */
+    top: 20px;  
+    right: 20px;  
+    box-shadow: 0px 0px 15px #00ffea;  
     transition: all 0.3s ease;
     animation: slideIn 1s ease-out; /* Slide-in Animation */
 }
 
 /* Hover Effect for Back Button */
 .btn-back:hover {
-    background: linear-gradient(45deg, #00ffea, #ff00ff); /* Color shift */
+    background: linear-gradient(45deg, #00ffea, #ff00ff); 
     box-shadow: 0px 0px 30px #ff00ff;
     transform: translateX(-5px); /* Slight movement to the left */
 }
@@ -172,11 +138,20 @@ body {
 /* Slide-in Animation */
 @keyframes slideIn {
     0% {
-        transform: translateX(-200px);  /* Starting from left */
+        transform: translateX(-200px); 
         opacity: 0;
     }
     100% {
-        transform: translateX(0);  /* Final position */
+        transform: translateX(0); 
         opacity: 1;
     }
+}
+#starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
 }
