@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming Menu</title>
+    <title>Land Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="game.css">
 </head>
@@ -14,26 +14,23 @@
     <a href="login.html"><button class="btn-back">Back</button></a>
 
     <div class="menu-interface">
-        <h1 class="menu-title">Game Menu</h1>
+        <h1 class="menu-title">Land Menu</h1>
         
         <div class="card-small">
-    
             <button class="btn01" id="start-game-btn">Start Game</button>
-            <button class="btn01" id="settings-btn">Settings</button>
             <button class="btn01" id="leaderboard-btn">Leaderboard</button>
-            <button class="btn01" id="exit-btn">Exit</button>
+            <button class="btn01" id="exit-btn">Quit</button>
         </div>
     </div>
+
+    <!-- Starfield Effect -->
+    <canvas id="starfield"></canvas>
 
     <script>
         document.getElementById('start-game-btn').addEventListener('click', function() {
             window.location.href = 'play.php'; 
         });
-
-        document.getElementById('settings-btn').addEventListener('click', function() {
-            window.location.href = 'setting.html'; 
-        });
-
+        
         document.getElementById('leaderboard-btn').addEventListener('click', function() {
             window.location.href = 'scoreboard.html'; 
         });
@@ -41,7 +38,8 @@
         document.getElementById('exit-btn').addEventListener('click', function() {
             window.location.href = 'homepage.html'; 
         });
-        // Example AJAX request to submit the score after the game ends
+        
+        //AJAX request to submit the score after the game ends
 function submitScore(score) {
     fetch('submit_score.php', {
         method: 'POST',
@@ -55,6 +53,56 @@ function submitScore(score) {
         console.log(data);  // Display response (success or error)
     });
 }
+document.addEventListener("DOMContentLoaded", function () {
+    // Starfield Effect
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function createStars() {
+        stars = [];
+        for (let i = 0; i < 150; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3,
+                speed: Math.random() * 1.5 + 0.5
+            });
+        }
+    }
+
+    function animateStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+            ctx.fill();
+            star.y += star.speed;
+            if (star.y > canvas.height) {
+                star.y = 0;
+                star.x = Math.random() * canvas.width;
+            }
+        });
+
+        requestAnimationFrame(animateStars);
+    }
+
+    resizeCanvas();
+    createStars();
+    animateStars();
+
+    window.addEventListener("resize", () => {
+        resizeCanvas();
+        createStars();
+    });
+});
 
     </script>
 

@@ -40,21 +40,21 @@ body {
 }
 
 .btn01 {
-    background: linear-gradient(45deg, #ff00ff, #0088ff); /* Neon blue gradient */
+    background: linear-gradient(45deg, #ff00ff, #0088ff); 
     color: white;
-    border: 3px solid #00ffea; /* Neon border */
-    border-radius: 12px; /* More futuristic feel */
+    border: 3px solid #00ffea; 
+    border-radius: 12px; 
     padding: 1rem 2rem;
     font-size: 1.8rem;
     font-family: 'Orbitron', sans-serif;
     font-weight: bold;
     cursor: pointer;
-    text-transform: uppercase; /* Gaming-style text */
-    letter-spacing: 2px; /* Adds a bit of space for style */
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
     width: 320px;
     height: 85px;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0px 0px 20px #00ffea; /* Neon glow */
+    box-shadow: 0px 0px 20px #00ffea; 
     text-align: center;
     display: flex;
     justify-content: center;
@@ -67,7 +67,7 @@ body {
 .btn01:hover {
     background: linear-gradient(45deg, #ff00ff, #00ffea);
     box-shadow: 0px 0px 30px #ff00ff;
-    transform: scale(1.05); /* Slight pop effect */
+    transform: scale(1.05); 
 }
 
 /* Button animation effect */
@@ -88,7 +88,7 @@ body {
 }
 
 .btn-back {
-    background: linear-gradient(45deg, #ff00ff, #0088ff); /* Neon Gradient */
+    background: linear-gradient(45deg, #ff00ff, #0088ff); 
     color: white;
     border: 3px solid #00ffea;
     border-radius: 12px;
@@ -104,14 +104,14 @@ body {
     position: absolute;
     top: 20px;  /* Positioning at the top */
     right: 20px;  /* Positioning at the right */
-    box-shadow: 0px 0px 15px #00ffea;  /* Neon Glow */
+    box-shadow: 0px 0px 15px #00ffea;  
     transition: all 0.3s ease;
     animation: slideIn 1s ease-out; /* Slide-in Animation */
 }
 
 /* Hover Effect for Back Button */
 .btn-back:hover {
-    background: linear-gradient(45deg, #00ffea, #ff00ff); /* Color shift */
+    background: linear-gradient(45deg, #00ffea, #ff00ff); 
     box-shadow: 0px 0px 30px #ff00ff;
     transform: translateX(-5px); /* Slight movement to the left */
 }
@@ -126,4 +126,13 @@ body {
         transform: translateX(0);  /* Final position */
         opacity: 1;
     }
+}
+#starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
 }
