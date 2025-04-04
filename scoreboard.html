@@ -7,27 +7,125 @@
     <link rel="stylesheet" href="scoreboard.css">
 </head>
 <body>
+    <audio autoplay loop>
+        <source src="sound/puzzle-game-loop-bright-casual-video-game-music-249201.mp3" type="audio/mp3">
+    </audio> 
+
+    <a href="game.html">
+       <button class="btn-back">BACK</button>
+    </a>
+  
     <div class="scoreboard-container">
-        <a href="game.html">
-        <button class="btn-back">Back</button>
-        </a>
-        <h1 class="scoreboard-title">Land Leaderboard</h1>
-
-        
-        <div class="scoreboard-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Player</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
+      <div class="glitch-text">
+        <B>Land Leaderboard</B>
+      </div>
+      <div class="scoreboard-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body">
+            <!-- Data will be dynamically loaded here -->
+          </tbody>
+        </table>
+      </div>
     </div>
-</body>
-</html>
+  
+    <!-- Starfield Effect -->
+    <canvas id="starfield"></canvas>
+
+    <script>
+      // Function to fetch leaderboard data from API and populate the table
+      async function fetchLeaderboard() {
+        try {
+          // Replace with your actual API URL
+          const apiUrl = 'http://localhost:5000/leaderboards'; // Your API endpoint
+  
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+  
+          // Get the table body element
+          const leaderboardBody = document.getElementById('leaderboard-body');
+          
+          // Clear the table body before adding new data
+          leaderboardBody.innerHTML = '';
+  
+          // Iterate through the API data and insert rows into the table
+          data.forEach(player => {
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+              <td class="rank">${player.rank}</td>
+              <td class="username">${player.player}</td>
+              <td class="score">${player.score}</td>
+            `;
+            
+            leaderboardBody.appendChild(row);
+          });
+        } catch (error) {
+          console.error('Error fetching leaderboard data:', error);
+        }
+      }
+  
+        // Fetch leaderboard data when the page loads
+        window.onload = fetchLeaderboard;
+  
+        document.addEventListener("DOMContentLoaded", function () {
+        // Starfield Effect
+          const canvas = document.getElementById("starfield");
+          const ctx = canvas.getContext("2d");
+          let stars = [];
+
+          function resizeCanvas() {
+            canvas.width = window.innerWidth;
+             canvas.height = window.innerHeight;
+         }
+
+          function createStars() {
+            stars = [];
+            for (let i = 0; i < 150; i++) {
+              stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3,
+                speed: Math.random() * 1.5 + 0.5
+            });
+           }
+          }
+
+          function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        
+            stars.forEach(star => {
+              ctx.beginPath();
+              ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+              ctx.fill();
+              star.y += star.speed;
+              if (star.y > canvas.height) {
+                star.y = 0;
+                star.x = Math.random() * canvas.width;
+            }
+         });
+
+        requestAnimationFrame(animateStars);
+     }
+
+      resizeCanvas();
+      createStars();
+      animateStars();
+
+      window.addEventListener("resize", () => {
+        resizeCanvas();
+        createStars();
+    });
+  });
+      
+    </script>
+  
+  </body>
+  </html>

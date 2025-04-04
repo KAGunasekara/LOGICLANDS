@@ -3,9 +3,9 @@ let score = 0;
 let timerDuration = 90;
 let timerInterval;
 let questionNumber = 1;
-let attemptsLeft = 5; 
-const apiEndpoint = "http://localhost/LOGIC%20LAMDS/api/banana_api.php";
-const saveScoreEndpoint = "http://localhost/LOGIC%20LAMDS/scoresave.php";
+let attemptsLeft = 14; 
+const apiEndpoint = "api/banana_api.php";
+const saveScoreEndpoint = "scoreboard.php";
 
 const victorySound = new Audio('sound/game-background-loop-uplifting-adventure-music-loop-248804.mp3');
 
@@ -55,8 +55,8 @@ function loadLevel(currentLevel) {
   //document.getElementById("question-indicator").innerText = `Level ${currentLevelName} - Question`;
 
     // Adjust the number of attempts and timer duration
-    //attemptsLeft = Math.max(1, 4 - currentLevel); // Decrease attempts as level increases
-    timerDuration = Math.max(10, 90 - (currentLevel - 1) * 10);
+    attemptsLeft = Math.max(1, 15 - currentLevel); 
+    timerDuration = Math.max(1, 90 - (currentLevel - 1) * 10);
     document.getElementById("attempts-indicator").innerText = `Attempts: ${attemptsLeft}`;
     startTimer();
     fetchQuestion(); // Fetch the first question for the level
@@ -84,7 +84,8 @@ function startTimer() {
             clearInterval(timerInterval);
             gameContainer.classList.remove("red-alert");
             alert("Ohhh Time's up champ! You failed this level.");
-            saveScore();
+            
+            saveScore(score);
             resetGame();
         }
     }, 1000);
@@ -124,15 +125,14 @@ function checkAnswer(userAnswer) {
 
         if (questionNumber > 0) {
             level++;
-            if (level > 3) {
+            if (level > 10) {
                 victorySound.play();
-                setTimeout(() => {
-                    alert("Hey champ you're completed all levels! Congratulations!");
-                    saveScore();
-                    resetGame();
-                }, 7000);
+                alert("Hey champ you're completed all levels! Congratulations!");
+                saveScore(score);
+                window.location.href = "game.html";
+                
             } else {
-                fetchScores();
+                //fetchScores();
                 loadLevel(level);
             }
         } else {
@@ -145,10 +145,11 @@ function checkAnswer(userAnswer) {
         document.getElementById("attempts-indicator").innerText = `Attempts: ${attemptsLeft}`;
         if (attemptsLeft <= 0) {
             alert("Ohhhh champ no more attempts left! You failed this level.");
-            saveScore();
+            //saveScore();
+            saveScore(score);
             resetGame();
         } else {
-            alert("Chmp Incorrect answer. Try again!");
+            alert("Champ Incorrect answer. Try again!");
         }
     }
 }
@@ -164,28 +165,7 @@ function displayQuestion(questionData) {
     }
 }
 
-// Save the current score to the database
-function saveScore() {
-    fetch(saveScoreEndpoint, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ score })
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`Failed to save the score. HTTP status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("Score saved successfully:", data);
-        })
-        .catch((error) => {
-            console.error("Error saving score:", error);
-        });
-}
+
 
 // Reset the game
 function resetGame() {
@@ -193,9 +173,9 @@ function resetGame() {
     score = 0;
     level = 1;
     questionNumber = 1;
-    attemptsLeft = 5; // Reset attempts
+    attemptsLeft = 14; // Reset attempts
     const gameContainer = document.querySelector(".game-container");
     gameContainer.classList.remove("red-alert");
-    alert("Omg Game has been reset. Try again champ!");
+    alert("Omg Game Over. Try again champ!");
     loadLevel(level);
 }
