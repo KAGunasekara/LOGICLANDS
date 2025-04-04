@@ -4,6 +4,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
     exit();
 }
+$userName = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,7 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="play.css">
 </head>
 <body>
-
+    
     <div class="game-container">
         <header class="game-header">
             <h1 class="game-title">LOGIC LAND</h1>
@@ -28,7 +29,7 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
                 <div id="level-indicator" class="level-indicator">Level: 1</div>
                 <div id="question-indicator" class="question-indicator"></div>
-                <div id="attempts-indicator" class="attempts-indicator">Attempts: 5</div>
+                <div id="attempts-indicator" class="attempts-indicator">Attempts: 14</div>
                 <div id="question-grid" class="question-grid"></div>
                 <div id="correct-answer" style="display: block; max-width: 60px; margin-top: 10px; font-size: 14px; color: lightgray;">
                 </div>
@@ -38,11 +39,11 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
             </div>
             <aside class="side-section">
-        <div class="current-score">
-            <h2>Your Current Score</h2>
-            <span id="current-score">0</span>
-        </div>
-    </aside>
+                <div class="current-score">
+                    <h2>Your Current Score</h2>
+                    <span id="current-score">0</span>
+                </div>
+            </aside>
         </main>
     </div>
 
@@ -51,52 +52,34 @@ if (!isset($_SESSION['user_id'])) {
             const userConfirmed = confirm("Really champ!! Are you sure you want to leave?");
             if (userConfirmed) {
                 window.location.href = "game.html";
+                saveScore(score);
             }
         }
-        document.addEventListener("DOMContentLoaded", () => {
-            // Fetch scores initially and then every 2 seconds
-            fetchScores();
-        });
+        function saveScore($score) {
+            const curl = new XMLHttpRequest();
+            curl.open('POST', 'http://localhost:5000/leaderboards/Logic%20Land');
+            curl.setRequestHeader('Content-Type', 'application/json');
 
-        function fetchScores() {
-            // PHP endpoint to fetch scores
-            const scoresEndpoint = "fetchscores2.php";
+            curl.onload = function() {
+                if (curl.status >= 200 && curl.status < 300) {
+                    console.log(curl.responseText);
+                } else {
+                    console.error('Request failed with status:', curl.status, curl.statusText);
+                }
+            };
 
-            fetch(scoresEndpoint)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Error fetching scores: " + response.status);
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    if (data.error) {
-                        console.error(data.error);
-                        return; // No alert to avoid interrupting every 2 seconds
-                    }
+            curl.onerror = function($userName) {
+                console.error('Network error occurred.');
+            };
 
-                    // Populate the scoreboard table
-                    populateScoreboard(data.slice(0, 5)); // Only take the top 5 scores
-                })
-                .catch((error) => {
-                    console.error("Error fetching leaderboard:", error);
-                });
-        }
-        
-        function populateScoreboard(scores) {
-            const tableBody = document.querySelector("#scoreboard-table tbody");
-            tableBody.innerHTML = ""; // Clear existing rows
-
-            scores.forEach((score, index) => {
-                const row = document.createElement("tr");
-                row.id = `score-board-table-row-${index + 1}`; // Unique ID for each row
-                row.innerHTML = 
-                    `<td>${score.username}</td>
-                    <td>${score.score}</td>`;
-                tableBody.appendChild(row);
-            });
-        }
-    </script>
+            const data = {
+                "player": "<?php echo $_SESSION['username'];?>",
+                "score": score
+            };
+            
+            curl.send(JSON.stringify(data));
+}
+</script>
 
     <script src="play.js"></script>
 </body>
